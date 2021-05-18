@@ -2,12 +2,14 @@ import discord
 import os
 import asyncio
 import random
+from keep_alive import keep_alive
+from settings import token
+from settings import bad_words
+from discord.ext import commands
+import atexit
 
+bot = commands.Bot(command_prefix='!duck.')
 client = discord.Client()
-
-bad_words = ["fucker", "stupid", "fucking", "asshole", "shit", "fuck", "dumb", "ass", "nigger", "dick", "but"]
-
-token = "Your discord bot token"
 
 @client.event
 async def on_ready():
@@ -57,4 +59,6 @@ async def on_message(message):
         arg = message.content.split("!duck.",1)[1] 
         await message.channel.send(f"@{message.author} '!duck.{arg}' is not an available option...")
 
+keep_alive()
+atexit.register(keep_alive)
 client.run(token)
