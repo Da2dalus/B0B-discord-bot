@@ -1,5 +1,5 @@
 discord
 asyncio
-random
+random2
 atexit
 flask
