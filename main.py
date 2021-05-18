@@ -6,7 +6,6 @@ from keep_alive import keep_alive
 from settings import token
 from settings import bad_words
 from discord.ext import commands
-import atexit
 
 bot = commands.Bot(command_prefix='!duck.')
 client = discord.Client()
@@ -60,5 +59,5 @@ async def on_message(message):
         await message.channel.send(f"@{message.author} '!duck.{arg}' is not an available option...")
 
 keep_alive()
-atexit.register(keep_alive)
+
 client.run(token)
