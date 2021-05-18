@@ -2,30 +2,26 @@ import discord
 import os
 import asyncio
 import random
-from discord.ext import commands
 
-#---------------------------------
-token = os.environ['token']
-#---------------------------------
-
-bot = commands.Bot(command_prefix='!duck.')
 client = discord.Client()
 
 bad_words = ["fucker", "stupid", "fucking", "asshole", "shit", "fuck", "dumb", "ass", "nigger", "dick", "but"]
 
+token = "Your discord bot token"
+
 @client.event
 async def on_ready():
-    print("Started bot as {0.user}".format(client))
+    print(f"Started bot as {client.user}")
     
 @client.event
 async def on_member_join(member):
-    print("Recognised that a member called " + member.name + " joined")
-    await client.send_message("Welcome to this server " + member.name)
+    print(f"Recognised that a member called {member.name} joined")
+    await client.send_message(f"Welcome to this server {member.name}")
 
 @client.event
 async def on_member_leave(member):
-    print("Recognised that a member called " + member.name + " left")
-    await client.send_message(member.name + " left the server. Fuck you!!!!")
+    print(f"Recognised that a member called {member.name} left")
+    await client.send_message(f"{member.name} left the server. Fuck you!!!!")
 
 @client.event
 async def on_message(message):
@@ -48,17 +44,17 @@ async def on_message(message):
 
     elif message.content.startswith("!duck.slap"):
         name = message.content.split("!duck.slap ",1)[1] 
-        await message.channel.send(f"{message.author} slapped {name} !!!!! That was brutal!!!")
+        await message.channel.send(f"@{message.author} slapped {name} !!!!! That was brutal!!!")
    
     elif message.content == "!duck.fight":
-        await message.channel.send(f"{message.author} started a foot fight in the cafeteria!!! Watch out for that taco....")
+        await message.channel.send(f"@{message.author} started a foot fight in the cafeteria!!! Watch out for that taco....")
 
     elif message.content.startswith("!duck.challenge"):
         name = message.content.split("!duck.challenge ",1)[1] 
-        await message.channel.send(f"{message.author} challenged {name} to a duel! \n Do you accept {name}? Or are you going to run away like a coward!!")
+        await message.channel.send(f"@{message.author} challenged {name} to a duel! \n Do you accept {name}? Or are you going to run away like a coward!!")
    
     elif message.content.startswith("!duck"):
         arg = message.content.split("!duck.",1)[1] 
-        await message.channel.send(f"{message.author} {arg} is not an available option...")
+        await message.channel.send(f"@{message.author} '!duck.{arg}' is not an available option...")
 
 client.run(token)
