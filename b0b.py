@@ -22,12 +22,6 @@ class Slapper(commands.Converter):
 async def on_ready():
     print("Started bot as {0.user}".format(client))
 
-    for server in client.servers:
-        for channel in server.channels:
-            if channel.type == 'Text':
-                channel = client.get_channel(channel)
-                await channel.send("Hello! I am B0B. I am a bot that hates violence and swearing. \n Use '!duck.help' to list all my commands. \n You can also use '!duck.info' so I can introduce myself.")
-
 @client.event
 async def on_message(message):
 
@@ -40,12 +34,12 @@ async def on_message(message):
 @client.event
 async def on_member_join(member):
     print("Recognised that a member called " + member.name + " joined")
-        await client.send_message("Welcome to this server " + member)
+    await client.send_message("Welcome to this server " + member)
 
 @client.event
 async def on_member_leave(member):
     print("Recognised that a member called " + member.name + " left")
-        await client.send_message(member + " left the server. Fuck you!!!!")
+    await client.send_message(member + " left the server. Fuck you!!!!")
 
 @bot.command()
 async def info(ctx):
